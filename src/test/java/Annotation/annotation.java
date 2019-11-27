@@ -1,8 +1,12 @@
 package Annotation;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -28,12 +32,21 @@ public class annotation {
 	@When("^I enter password as \"(.*)\"$")
 	public void enterPassword(String arg1) {
 		driver.findElement(By.name("pass")).sendKeys(arg1);
-		driver.findElement(By.id("u_0_b")).click();
+		WebElement lgnbutton = null;
+		try {
+			lgnbutton = driver.findElement(By.id("loginbutton"));
+		} catch (NoSuchElementException exception) {
+			lgnbutton = driver.findElement(By.name("login"));
+		}
+		
+		lgnbutton.click();
 	}
 	
 	@Then("^Login should fail$")
 	public void checkFail() {
-		// TODO wait until current url changes
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.titleContains("Log into"));
+		
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110")) {
 			System.out.println("Test1 Pass");
 		} else {
