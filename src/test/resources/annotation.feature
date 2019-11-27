@@ -7,14 +7,8 @@ Background:
 	User navigates to Faceboook
 	Given I am on Facebook login page
 	
-#Scenario with AND
-Scenario:
-	When I enter username as "TOM"
-	And I enter password as "JERRY"
-	Then Login should fail
-	
 #Scenario with BUT
-Scenario:
+Scenario: Login Fail
 	When I enter username as "TOM"
 	And I enter password as "JERRY"
 	Then Login should fail

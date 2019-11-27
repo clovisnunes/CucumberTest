@@ -1,9 +1,11 @@
 package Annotation; 
 
-import org.junit.runner.RunWith; 
-import cucumber.junit.Cucumber; 
+import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@Cucumber.Options(format = {"pretty", "html:target/cucumber"}) 
+@CucumberOptions(plugin = "pretty", features = "src/test/resources")
+
 
 public class runTest { }
