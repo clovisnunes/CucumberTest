@@ -1,6 +1,7 @@
 # Author: clobnjuh@gmail.com
 # This is how background can be used to eliminate duplicate steps 
 # Scenario outline replaces variable/keywords with the value from the table
+# Tags 
 
 Feature: annotation
 
@@ -20,3 +21,10 @@ Examples:
 	| TOM | JERRY |
 	| PATATI | PATATA |
 	| LIGEI | RINHO |
+	
+#following scenario has been tagged as ReadyForTest and this should get executed
+@ReadyForTest
+Scenario: Forgot Password
+	When I click on Forgot Account option
+	Then I go to Find your account page
+	

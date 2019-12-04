@@ -66,5 +66,23 @@ public class annotation {
 		driver.close();
 	}
 	
+	@When("^I click on Forgot Account option$")
+	public void clickForgot() {
+		driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/form/table/tbody/tr[3]/td[2]/div/a")).click();
+	}
+	
+	@Then("^I go to Find your account page$")
+	public void checkForgotPage() {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.titleContains("Forgot"));
+		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar")) {
+			System.out.println("Test3 Pass");
+		} else {
+			System.out.println("Test3 Failed");
+			System.out.println("Current URL: " + driver.getCurrentUrl());
+		}
+		driver.close();
+		
+	}
 	
 }
