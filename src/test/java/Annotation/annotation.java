@@ -1,5 +1,7 @@
 package Annotation;
 
+import static org.junit.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-
-
 
 public class annotation {
 	
@@ -47,6 +47,7 @@ public class annotation {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.titleContains("Log into"));
 		
+		// TODO: Trade for assert
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110")) {
 			System.out.println("Test1 Pass");
 		} else {
@@ -55,6 +56,7 @@ public class annotation {
 		}
 	}
 	
+	// TODO: Remove piece of code
 	@Then("^Relogin option should be available$")
 	public void checkRelogin() {
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110")) {
@@ -75,12 +77,16 @@ public class annotation {
 	public void checkForgotPage() {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.titleContains("Forgot"));
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar")) {
-			System.out.println("Test3 Pass");
-		} else {
-			System.out.println("Test3 Failed");
-			System.out.println("Current URL: " + driver.getCurrentUrl());
-		}
+		
+		// TODO: Trade for assert
+		
+		assertEquals("FAILURE - Actual URL is not the expected!", "https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar", driver.getCurrentUrl());
+//		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar")) {
+//			System.out.println("Test3 Pass");
+//		} else {
+//			System.out.println("Test3 Failed");
+//			System.out.println("Current URL: " + driver.getCurrentUrl());
+//		}
 		driver.close();
 		
 	}

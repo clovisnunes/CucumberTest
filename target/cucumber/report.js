@@ -1,7 +1,7 @@
 $(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/annotation.feature");
 formatter.feature({
   "name": "annotation",
-  "description": "",
+  "description": "\tVerify login fail when user enters incorrect username and password ",
   "keyword": "Feature"
 });
 formatter.background({

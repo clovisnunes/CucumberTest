@@ -4,6 +4,7 @@
 # Tags 
 
 Feature: annotation
+	Verify login fail when user enters incorrect username and password 
 
 Background:
 	User navigates to Faceboook
