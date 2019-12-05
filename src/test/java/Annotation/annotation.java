@@ -11,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -19,9 +21,12 @@ public class annotation {
 	
 	WebDriver driver = null;
 	
+	@Before public void setUp() {
+		driver = new FirefoxDriver();
+	}
+	
 	@Given("^I am on Facebook login page$")
 	public void goToFacebook() {
-		driver = new FirefoxDriver();
 		driver.navigate().to("https://www.facebook.com/");
 	}
 	
@@ -52,18 +57,7 @@ public class annotation {
 	
 	}
 	
-	// TODO: Remove piece of code (repeated code)
-	@Then("^Relogin option should be available$")
-	public void checkRelogin() {
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110")) {
-			System.out.println("Test2 Pass");
-		} else {
-			System.out.println("Test2 Failed");
-			System.out.println("Current URL: " + driver.getCurrentUrl());
-		}
-		driver.close();
-	}
-	
+	// SCENARIO: Forgot Password
 	@When("^I click on Forgot Account option$")
 	public void clickForgot() {
 		driver.findElement(By.linkText("Forgot account?")).click();
@@ -75,9 +69,11 @@ public class annotation {
 		wait.until(ExpectedConditions.titleContains("Forgot"));
 		
 		assertEquals("FAILURE - Actual URL is not the expected!", "https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar", driver.getCurrentUrl());
-
-		driver.close();
 		
+	}
+	
+	@After public void cleanUp() {
+		driver.close();
 	}
 	
 }
