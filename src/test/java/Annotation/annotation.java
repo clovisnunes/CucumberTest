@@ -2,6 +2,7 @@ package Annotation;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -47,16 +48,11 @@ public class annotation {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.titleContains("Log into"));
 		
-		// TODO: Trade for assert
-		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110")) {
-			System.out.println("Test1 Pass");
-		} else {
-			System.out.println("Test1 Failed");
-			System.out.println("Current URL: " + driver.getCurrentUrl());
-		}
+		assertEquals("FAILURE - Actual URL is not the expected!", "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110", driver.getCurrentUrl());
+	
 	}
 	
-	// TODO: Remove piece of code
+	// TODO: Remove piece of code (repeated code)
 	@Then("^Relogin option should be available$")
 	public void checkRelogin() {
 		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110")) {
@@ -70,23 +66,16 @@ public class annotation {
 	
 	@When("^I click on Forgot Account option$")
 	public void clickForgot() {
-		driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/form/table/tbody/tr[3]/td[2]/div/a")).click();
+		driver.findElement(By.linkText("Forgot account?")).click();
 	}
 	
-	@Then("^I go to Find your account page$")
+	@Then("^I go to Find your account page$") @Test
 	public void checkForgotPage() {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.titleContains("Forgot"));
 		
-		// TODO: Trade for assert
-		
 		assertEquals("FAILURE - Actual URL is not the expected!", "https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar", driver.getCurrentUrl());
-//		if(driver.getCurrentUrl().equalsIgnoreCase("https://www.facebook.com/login/identify/?ctx=recover&ars=royal_blue_bar")) {
-//			System.out.println("Test3 Pass");
-//		} else {
-//			System.out.println("Test3 Failed");
-//			System.out.println("Current URL: " + driver.getCurrentUrl());
-//		}
+
 		driver.close();
 		
 	}

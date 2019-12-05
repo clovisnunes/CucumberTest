@@ -4,6 +4,7 @@
 Feature: New user registration
 	Verify that the new user registration is unsuccessful after passing the incorrect inputs
 
+@ReadyForTest
 Scenario: New user fail inputs
 	Given I am on the new user registration page
 	When I enter invalid data on the page

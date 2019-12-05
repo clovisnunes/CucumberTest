@@ -24,7 +24,6 @@ Examples:
 	| LIGEI | RINHO |
 	
 #following scenario has been tagged as ReadyForTest and this should get executed
-@ReadyForTest
 Scenario: Forgot Password
 	When I click on Forgot Account option
 	Then I go to Find your account page
